@@ -62,6 +62,7 @@ shared_ptr<T>::~shared_ptr() {
             std::cout << "DEBUG: delete count\n";
         } else {
             *_count -= 1; //析构函数不能只想着要释放指针，非最后一个共享指针的实例析构时，需要将计数减一，这个也非常重要！
+            std::cout << "Count minus 1\n";
         }
     }
 }
@@ -79,8 +80,8 @@ int shared_ptr<T>::get_count() {
 /*
  * 1)=操作符重载，需要特别注意调用方其实是左值, 因此必须事先分配内存！
  *   Type x = y; 这种方式并不能调用=操作符重载！！！实际是用y去初始化x,因此调用了拷贝构造函数
- * 2)返回值必须是引用。
- *   因为调用方是左值，返回值如果不是引用或者指针，那么是不能做为左值的
+ * 2)返回值用引用。
+ *   因为调用方是返回自己。如果返回值，则会将调用方先析构掉，再将返回值拷贝给调用方。也就是会无谓的增加一次析构和一次拷贝构造！！！
  */
 template <typename T>
 shared_ptr<T>& shared_ptr<T>::operator= (shared_ptr<T>& rp) { 
