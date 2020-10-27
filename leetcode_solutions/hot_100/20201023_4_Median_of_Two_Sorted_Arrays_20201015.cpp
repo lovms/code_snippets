@@ -52,20 +52,22 @@ public:
 			              vector<int>& nums2, int bi, int bj, int median) {
         // 一下的写法中，nums1和nums2是对称的，所以，判断逻辑写了两遍，可以写的更简洁。
         
-        // 判断结束的条件有两个 aj < 0 或者 ai > aj (nums同理),
-        // 两种结束条件下，median的计算方式是不同的，这是最难的部分！
-		if (aj < 0 && median-1 < nums2.size()) {
+        // 判断结束的条件为： ai > aj 或者 bi > bj
+        // 结束条件不太好理解。
+		// aj < 0的结束条件是ai>aj的特例!
+		
+		/*if (aj < 0 && median-1 < nums2.size()) {
 			return nums2[median-1];
-		}
+		}*/
 		
 		if (ai > aj) {
 			int t = median - ai -1;
 			return nums2[t];
 		}
-		if (bj < 0 && median-1 < nums1.size()) {
+		/*if (bj < 0 && median-1 < nums1.size()) {
 			
 			return nums1[median-1];
-		}
+		}*/
 
 		if (bi > bj) {
 			int t = median - bi -1;
