@@ -3,6 +3,14 @@ import sys
 import numpy as np
 
 
+'''
+Core Idea:
+1. Split an number array into to parts: left one are smaller than PIVOT,
+   and right one are bigger than PIVOT.
+2. We always swap the number pointed by index `h` with the pivot, due to 
+   the traversing order from left to right.
+'''
+
 def quicksort(array, low, high):
     if low >= high:
         return
@@ -17,9 +25,9 @@ def quicksort(array, low, high):
     l = low + 1
     h = high
     while l <= h:
-        while l < high and array[l] <= array[pivot]:
+        while l < high and array[l] < array[pivot]:   # use array[l] <= array[pivot] leads to unstable sort
             l += 1
-        while h > pivot and array[h] >= array[pivot]:
+        while h > pivot and array[h] >= array[pivot]:  # use array[h] >= array[pivot] here leads to stable sort
             h -= 1
         if l < h:
             tmp = a[l]
