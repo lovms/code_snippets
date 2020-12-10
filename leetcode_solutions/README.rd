@@ -11,3 +11,6 @@
 
 * curated list of top 100， 有分类，感觉还不错的
    https://h1ros.github.io/posts/coding/leetcode-top-100-problem-selection/
+
+* 网上看到的一些算法题的总结，可以用来思考下：
+	https://wizardforcel.gitbooks.io/the-art-of-programming-by-july/content/02.15.html
