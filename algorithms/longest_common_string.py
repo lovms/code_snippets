@@ -4,7 +4,7 @@ import numpy as np
 
 '''
 (1)
-对于字符串z 和 y，index i, j分别从0开始指示z和y的字符，lcs(i, j)表示 z(i, ... len(z)和y(j, ..., len(j))的最长公共子串,
+对于字符串z 和 y，index i, j分别从0开始指示z和y的字符，lcs(i, j)表示 z(i, ... len(z)和y(j, ..., len(y))的最长公共子串,
 存在如下递归计算式：
 
 如果 z(i) == y(j)，那么lcs(i, j) = z(i) + lcs(i+1, j+1);
