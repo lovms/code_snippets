@@ -49,7 +49,7 @@ int mergeSort(vector<float>& nums) {
 	// If half1 is not empty, then remain nums in half1
 	// are all reversed to nums in half2!
 	// We should note that the p1'th num in half1 has been dealed with,
-	// so it shouldn't be dealed with again in then loop below.
+	// so it shouldn't be dealed with again in the loop below.
 	bool repeat = true;
 	while (p1 < half1.size()) { 
 		nums[p++] = half1[p1];
