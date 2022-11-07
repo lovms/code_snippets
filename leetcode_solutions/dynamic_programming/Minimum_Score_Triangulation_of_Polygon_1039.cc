@@ -13,21 +13,30 @@
  * i,...,k和 k,...,j两个子问题。
  *
  * 假设dp[i][j]就是 上述父问题的最小三角划分多边形的最小值，那么描述上面过程的动态方程就是：
- * dp[i][j] = min( dp[i][k] + v[i]*v[k]*v[j] + dp[k][j] )
+ * dp[i][j] = Min_k( dp[i][k] + v[i]*v[k]*v[j] + dp[k][j] ), i < k <j
  *
  *
- * 另外，我这里的实现还是查表法的实现。可以考虑如何自底向上dp迭代实现。
+ * 另外，我这里的实现还是查表法的实现。 bottomUpDp则是自下而上的实现方法，需要注意为了能够组成三角形，
+ * 这里step的最小值就是2。自下而上方法最重要的就是dp矩阵的初始化，初始化稍有差池，结果肯定不对了。
  */
 #include <iostream>
 #include <vector>
+
+#define MAX_INT 0x7FFFFFFF
 
 using std::vector;
 class Solution {
 public:
     int minScoreTriangulation(vector<int>& values) {
+		/*自上而下查表法*/
+		/*
 		vector<vector<int>> dp(values.size(), vector<int>(values.size(), 0));
 		triangulation(values, 0, values.size()-1, dp);
 		return dp[0][values.size()-1];
+		*/
+
+		/*自下而上*/
+		return bottomUpDp(values);
     }
 
 	int triangulation(vector<int>& values, int i, int j, vector<vector<int>>& dp) {
@@ -59,13 +68,40 @@ public:
 		return dp[i][j];
 	}
 
+	/*自底向上的dp*/
+	int bottomUpDp(vector<int>&values) {
+		int n = values.size();
+		vector<vector<int>> dp(n, vector<int>(n, 0));
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j)
+				dp[i][j] = MAX_INT;
+			if (i < n-1) {
+		        dp[i][i+1] = 0;
+			}
+			dp[i][i] = 0;
+        }
+
+		int j = 0;
+		for (int step = 2; step <= n-1; ++step) {
+			for (int i = 0; i < n; ++i) {
+                j = i+step;
+				if (j >= n) continue;
+				for (int k = i+1; k < j; ++k) { // i < k < j
+					dp[i][j] = std::min(dp[i][j], dp[i][k] + values[i]*values[k]*values[j] + dp[k][j]);
+
+				}
+			}
+		}
+		return dp[0][n-1];
+	}
+
 };
 
 int main() {
 	Solution sol;
-	vector<int> values = {1,2,3};
+	//vector<int> values = {1,2,3};
 	//vector<int> values = {3,7,4,5};
-	//vector<int> values = {1,3,1,4,1,5};
+	vector<int> values = {1,3,1,4,1,5};
 	std::cout << sol.minScoreTriangulation(values) << std::endl;
 	return 0;
 }
