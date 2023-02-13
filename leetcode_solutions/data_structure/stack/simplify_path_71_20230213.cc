@@ -1,3 +1,16 @@
+/**
+ * 这道题并不难，因为需要判断的状况并不是很多。
+ * 我设定了在每次遇到'/'时对状态进行判断再进行相应的处理。
+ *
+ * 有2点关键处：
+ * 1）因为 '/..' 需要回退，自然而然的使用堆栈是合适的；
+ * 2）为了避免在循环处理完，还有剩余的状态没有判断，所以
+ *    我特地的在原始目录字符串的结尾添加了'/'，从而使得
+ *    在循环结束时一定判断完当时的状态。
+ *    但相应的，我们需要对结尾的'/'作处理，按照题目要求标准
+ *    的路径结尾是不包含'/'的；
+ * 3）一定要注意第一位的'/'是永远不能删除的！！！
+ **/
 /*
 Given a string path, which is an absolute path (starting with a slash '/') to a file or directory in a Unix-style file system, convert it to the simplified canonical path.
 
