@@ -22,6 +22,7 @@
 	https://wizardforcel.gitbooks.io/the-art-of-programming-by-july/content/02.15.html
 
 
+* 包含有XXX表示该题很有代表意义！包含xxx（小写）代表尚未解决！
 
 ## 刷题方法思考
 
