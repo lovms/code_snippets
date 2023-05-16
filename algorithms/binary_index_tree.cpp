@@ -1,6 +1,6 @@
 /* Binary Index Tree (BIT) 树状数组，又称为Fenwick Tree （Fenwick最早发明的）
  * 它是针对需要动态维护的前缀和设计出来的，可以将静态前缀和的修改复杂度从O(n)
- * 降低到O(nlogn)，当然查询的时间复杂度也从O(1)增加到O(nlogn)。
+ * 降低到O(logn)，当然查询的时间复杂度也从O(1)增加到O(logn)。
  *
  * 但总体上Fenwick Tree可以在O(logn)时间内完成一次查询、修改前缀和的操作。
  */
